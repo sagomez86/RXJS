@@ -1,0 +1,42 @@
+<h1>Entregable Programacion Reactiva - Santiago Gomez</h1>
+<p>Funcionalidad para agregar en la proxima entrega de proyecto</p>
+
+<hr>
+
+<h3>Lista de Cursos con Promise</h3>
+
+
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th>Nombre</th>
+      <th>Profesor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let curso of cursosPromise">
+      <td>{{curso.nombre}}</td>
+      <td>{{curso.profesor}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+
+<hr>
+
+<h3>Lista de Cursos con Observable</h3>
+
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th>Nombre</th>
+    <th>Profesor</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let curso of cursosObservable">
+    <td>{{curso.nombre}}</td>
+    <td>{{curso.profesor}}</td>
+  </tr>
+  </tbody>
+</table>
