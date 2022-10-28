@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Curso } from '../models/curso';
 
 @Injectable({
@@ -7,8 +7,14 @@ import { Curso } from '../models/curso';
 })
 export class CursoService {
 
-  constructor() { };
 
+  listaCursos$: Observable<Curso[]>;
+
+  constructor() { 
+    this.listaCursos$ = new Observable<Curso[]>((suscriptor) => {
+      suscriptor.next(this.listaCursos);
+  })
+};
 
   listaCursos: Curso[] = [
     {
@@ -38,7 +44,7 @@ export class CursoService {
   };
 
   getCursosObservable(){
-    return of(this.listaCursos)
+    return this.listaCursos$
   };
-
+  
 }

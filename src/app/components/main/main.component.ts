@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CursoService } from 'src/app/services/curso.service';
 import { Curso } from 'src/app/models/curso';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -11,8 +11,8 @@ import { Subscription } from 'rxjs';
 export class MainComponent implements OnInit{
 
   cursosPromise!: Curso[];
-  cursosObservable!: Curso[];
-  subscription: Subscription;
+  cursosObservable$!: Observable<Curso[]>;
+  
   
   constructor(private cursoService: CursoService) { 
 
@@ -22,22 +22,13 @@ export class MainComponent implements OnInit{
       console.error(error)
     })
 
-    this.subscription = cursoService.getCursosObservable().subscribe({
-      next: (valor:Curso[]) =>{
-        console.log("Curso desde Observable OK");
-        this.cursosObservable = valor;
-      },
-      error:(error) =>{
-        console.error(error);
-      }
 
-    })
+    this.cursosObservable$ = cursoService.getCursosObservable();
+    
   };
 
   ngOnInit(): void {
   };
   
-  ngOnDestroy(){
-    this.subscription.unsubscribe()
-  }
+
 }

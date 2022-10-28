@@ -34,7 +34,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let curso of cursosObservable">
+  <tr *ngFor="let curso of cursosObservable$ |async">
     <td>{{curso.nombre}}</td>
     <td>{{curso.profesor}}</td>
   </tr>
